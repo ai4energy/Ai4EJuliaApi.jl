@@ -26,6 +26,8 @@ end
 
 function julia_main()::Cint
     InitRouter()
+    # in linux docker
+    # Oxygen.serve(host="0.0.0.0", port=19801, show_banner=false, reuseaddr=true)
     Oxygen.serve(host="0.0.0.0", port=19801, show_banner=false)
     return 0
 end
