@@ -13,7 +13,7 @@ function coolproppurefluid(req::HTTP.Request)
     inputvalue1 = requestbody["inputvalue1"]
     inputparameter2 = requestbody["inputparameter2"]
     inputvalue2 = requestbody["inputvalue2"]
-    unit_system = requestbody["unit_system"]
+    unitsystem = requestbody["unitsystem"]
     input_longname_to_key = Dict(
         "Density (mass) [kg/m^3]" => "Dmass",
         "Pressure [Pa]" => "P",
@@ -35,13 +35,13 @@ function coolproppurefluid(req::HTTP.Request)
     result["Vapor quality [kg/kg]"] = CoolProp.PropsSI("Q", key1, inputvalue1, key2, inputvalue2, fluid)
     result["Speed of sound [m/s]"] = CoolProp.PropsSI("A", key1, inputvalue1, key2, inputvalue2, fluid)
 
-    if unit_system == "Mole-based"
+    if unitsystem == "Mole-based"
         result["Density [mol/m3]"] = CoolProp.PropsSI("Dmolar", key1, inputvalue1, key2, inputvalue2, fluid)
         result["Enthalpy [J/mol]"] = CoolProp.PropsSI("Hmolar", key1, inputvalue1, key2, inputvalue2, fluid)
         result["Entropy [J/mol/K]"] = CoolProp.PropsSI("Smolar", key1, inputvalue1, key2, inputvalue2, fluid)
         result["Constant-pressure specific heat [J/mol/K]"] = CoolProp.PropsSI("Cpmolar", key1, inputvalue1, key2, inputvalue2, fluid)
         result["Constant-volume specific heat [J/mol/K]"] = CoolProp.PropsSI("Cvmolar", key1, inputvalue1, key2, inputvalue2, fluid)
-    elseif unit_system == "Mass-based"
+    elseif unitsystem == "Mass-based"
         result["Density [kg/m3]"] = CoolProp.PropsSI("Dmass", key1, inputvalue1, key2, inputvalue2, fluid)
         result["Enthalpy [J/kg]"] = CoolProp.PropsSI("Hmass", key1, inputvalue1, key2, inputvalue2, fluid)
         result["Entropy [J/kg/K]"] = CoolProp.PropsSI("Smass", key1, inputvalue1, key2, inputvalue2, fluid)
