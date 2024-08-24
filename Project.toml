@@ -1,0 +1,10 @@
+name = "Ai4EJuliaApi"
+uuid = "3a5cbdee-46e3-4ec6-89b6-7f803c0eee38"
+authors = ["mingtaoli <mingtao@xjtu.edu.cn>"]
+version = "0.1.0"
+
+[deps]
+CoolProp = "e084ae63-2819-5025-826e-f8e611a84251"
+HTTP = "cd3eb016-35fb-5094-929b-558a96fad6f3"
+JSON = "682c06a0-de6a-54ab-a142-c8b1cf79cde6"
+Oxygen = "df9a0d86-3283-4920-82dc-4555fc0d1d8b"
