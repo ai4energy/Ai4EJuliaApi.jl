@@ -5,6 +5,15 @@ version = "0.1.0"
 
 [deps]
 CoolProp = "e084ae63-2819-5025-826e-f8e611a84251"
+Dates = "ade2ca70-3891-5945-98fb-dc099432e06a"
 HTTP = "cd3eb016-35fb-5094-929b-558a96fad6f3"
 JSON = "682c06a0-de6a-54ab-a142-c8b1cf79cde6"
+JSON3 = "0f8b85d8-7281-11e9-16c2-39a750bddbf1"
+Logging = "56ddb016-857b-54e1-b83d-db4d58db5568"
 Oxygen = "df9a0d86-3283-4920-82dc-4555fc0d1d8b"
+
+[compat]
+Dates = "1.11.0"
+JSON3 = "1.14.2"
+Logging = "1.11.0"
+Oxygen = "1.5.12"

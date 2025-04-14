@@ -6,7 +6,7 @@ echo "starting $1 Ai4Energy Julia API servers ..."
 
 for (( c=$START; c<=$END; c++ ))
 do
-	julia --project=/opt/coolpropapi ai4ejuliaapi.jl &
+	julia --project=/opt/Ai4EJuliaAPI srv/ai4ejuliaapi.jl &
 done
 
 wait

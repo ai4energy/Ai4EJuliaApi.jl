@@ -2,7 +2,10 @@ module Ai4ECoolProp
 using Oxygen
 using CoolProp
 using HTTP
-using JSON
+using JSON3
+using Logging
+
+export InitRouter, preheat
 
 function coolproppurefluid(req::HTTP.Request)
 
@@ -61,6 +64,18 @@ function coolproppurefluid(req::HTTP.Request)
     result["saturation_data"] = saturation_data
 
     return HTTP.Response(200, JSON.json(result))
+end
+
+# 预热常用工质
+function preheat()
+    @info "Preheating CoolProp with common fluids..."
+    try
+        PropsSI("D", "T", 300, "P", 101325, "Water")
+        PropsSI("H", "T", 300, "P", 101325, "R134a")
+        @info "Preheating completed"
+    catch e
+        @warn "Preheating failed" error=e
+    end
 end
 
 function InitRouter()

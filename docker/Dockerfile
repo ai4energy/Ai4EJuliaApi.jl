@@ -1,16 +1,21 @@
-FROM julia:1.9.2
+FROM julia:1.11.4
 
+ENV JULIA_NUM_THREADS=2 \
+    JULIA_PKG_SERVER="https://mirrors.cernet.edu.cn/julia" \
+    JULIA_DEPOT_PATH="/opt/julia_depot" \
+    PORT=9801 \
+    APP_ROOT="/opt/Ai4EJuliaAPI"
 
-ENV JULIA_NUM_THREADS=2
+RUN mkdir -p ${JULIA_DEPOT_PATH} ${APP_ROOT}
 
-WORKDIR /opt/ai4ejuliaapi/
+WORKDIR ${APP_ROOT}
 
-COPY .. .
+COPY . .
 
-RUN julia --project="." -e 'ENV["JULIA_PKG_SERVER"] = "https://mirrors.pku.edu.cn/julia"; import Pkg; Pkg.instantiate();'
+RUN julia --project="." -e 'using Pkg; Pkg.instantiate(); include("srv/precompile.jl")'
 
-RUN julia --project="." precompile.jl
+EXPOSE $PORT
 
-EXPOSE 19801
+# ENTRYPOINT ["julia", "--project=/opt/Ai4EJuliaAPI", "srv/ai4ejuliaapi.jl"]
 
 CMD ["bash"]
