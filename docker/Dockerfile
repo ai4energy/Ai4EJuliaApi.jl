@@ -3,7 +3,7 @@ FROM julia:1.11.4
 ENV JULIA_NUM_THREADS=2 \
     JULIA_PKG_SERVER="https://mirrors.cernet.edu.cn/julia" \
     JULIA_DEPOT_PATH="/opt/julia_depot" \
-    PORT=9801 \
+    PORT=9001 \
     APP_ROOT="/opt/Ai4EJuliaAPI"
 
 RUN mkdir -p ${JULIA_DEPOT_PATH} ${APP_ROOT}
